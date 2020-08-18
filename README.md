@@ -19,7 +19,7 @@ Project is created with:
 * XGBoost: 1.1
 * Detailed version information below
 
-# Name                    Version                   Build  Channel
+### Name                  Version                   Build channel
 _anaconda_depends         2019.03                  py37_0  
 _tflow_select             2.3.0                       mkl  
 absl-py                   0.9.0                    py37_0  
