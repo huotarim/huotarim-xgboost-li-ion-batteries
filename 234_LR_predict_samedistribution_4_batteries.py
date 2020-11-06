@@ -2,21 +2,15 @@
 #
 # batteries 044, 056, 067 and 071 a.k.a. b,c,d,e.
 from pandas import read_csv
-from pandas import to_datetime
-from pandas import DataFrame
 from sklearn.model_selection import train_test_split
-from xgboost import XGBRegressor
-from sklearn.model_selection import TimeSeriesSplit
+from sklearn import linear_model 
 from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
-from sklearn.metrics import explained_variance_score
+from sklearn.metrics import explained_variance_score 
 from numpy import sqrt
 from numpy import std
-from numpy import zeros
 from numpy import linspace
-from numpy import concatenate
-from numpy import NaN
 import matplotlib.pyplot as plt
 
 # Load data
@@ -55,14 +49,14 @@ for _filename in FILENAMES:
     X_train, X_test, y_train, y_test = train_test_split(X, y,
     test_size=test_size, shuffle=False)
 
-    # Fit model
-    model = XGBRegressor(n_estimator=200,max_depth=2, learning_rate=0.1, 
-        colsample_bylevel=0.8, n_jobs=-1)
-    model.fit(X_train, y_train)
-    #print(model)
+    # create linear regression object 
+    reg = linear_model.LinearRegression() 
+    
+    # train the model using the training sets 
+    reg.fit(X_train, y_train) 
 
-    # Make predictions
-    predictions = model.predict(X_test)
+    # Make predictions for test data
+    predictions = reg.predict(X_test)
 
     # Evaluate predictions
     evc = explained_variance_score(y_test, predictions)
